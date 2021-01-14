@@ -65,9 +65,9 @@ namespace ContosoUniversity.Data
                 new ContactSkill{ ContactId = 3, SkillId = 4},
             };
 
-            foreach (var s in skills)
+            foreach (var cs in contactSkills)
             {
-                context.Skills.Add(s);
+                context.ContactSkills.Add(cs);
             }
             context.SaveChanges();
         }
