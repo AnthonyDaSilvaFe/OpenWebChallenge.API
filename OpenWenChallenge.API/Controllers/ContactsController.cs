@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace OpenWebChallenge.API.Controllers
 {
+    [Route("api/contacts")]
     public class ContactsController : Controller
     {
         private readonly APIContext _context;
@@ -18,12 +19,14 @@ namespace OpenWebChallenge.API.Controllers
         }
 
         // GET: Contacts
+        [HttpGet("")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Contacts.ToListAsync());
         }
 
         // GET: Contacts/Details/5
+        [HttpGet("/details/{id}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
