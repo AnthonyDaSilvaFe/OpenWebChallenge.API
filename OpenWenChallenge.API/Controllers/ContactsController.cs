@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace OpenWebChallenge.API.Controllers
 {
-    [Route("api/contacts")]
+    [Route("api/contacts/")]
+    [ApiController]
     public class ContactsController : Controller
     {
         private readonly APIContext _context;
@@ -18,15 +19,19 @@ namespace OpenWebChallenge.API.Controllers
             _context = context;
         }
 
-        // GET: Contacts
-        [HttpGet("")]
+        /// <summary>
+        ///     Retrieve all Contact
+        /// </summary>
+        /// <remarks>Retrieve all Contact from database</remarks>
+        [HttpGet]
+        [Route("")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Contacts.ToListAsync());
         }
 
-        // GET: Contacts/Details/5
-        [HttpGet("/details/{id}")]
+        [HttpGet]
+        [Route("details/{id?}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -48,14 +53,15 @@ namespace OpenWebChallenge.API.Controllers
             return View(contact);
         }
 
-        // GET: Contacts/Create
+        [HttpGet]
+        [Route("create")]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Contacts/Create
         [HttpPost]
+        [Route("create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("FirstName,LastName,FullName,Address,Email,MobilePhoneNumber")] Contact contact)
         {
@@ -75,7 +81,8 @@ namespace OpenWebChallenge.API.Controllers
             return View(contact);
         }
 
-        // GET: Contacts/Edit/5
+        [HttpGet]
+        [Route("edit/{id?}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -93,6 +100,7 @@ namespace OpenWebChallenge.API.Controllers
 
         // POST: Contacts/Edit/5
         [HttpPost]
+        [Route("edit/{id?}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,FullName,Address,Email,MobilePhoneNumber")] Contact contact)
         {
@@ -129,6 +137,8 @@ namespace OpenWebChallenge.API.Controllers
         /// </summary>
         /// <param name="id">Contact Id</param>
         /// <returns></returns>
+        [HttpGet]
+        [Route("delete/{id?}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -148,6 +158,7 @@ namespace OpenWebChallenge.API.Controllers
 
         // POST: Contacts/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Route("delete/{id?}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

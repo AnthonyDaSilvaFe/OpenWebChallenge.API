@@ -1,7 +1,6 @@
 ﻿
 using OpenWebChallenge.API.Data;
 using OpenWebChallenge.API.Models;
-using System;
 using System.Linq;
 
 namespace ContosoUniversity.Data
@@ -20,9 +19,9 @@ namespace ContosoUniversity.Data
 
             var contacts = new Contact[]
             {
-            new Contact{ FirstName = "Anthony", LastName = "Da Silva Ferreira", FullName = "Anthony Da Silva Ferreira", Address = "Address", Email = "mail", MobilePhoneNumber = "phone"  },
-            new Contact{ FirstName = "Samus", LastName = "Samus Aran", FullName = "Samus Aran", Address = "Space", Email = "samus.aran@metroid.com", MobilePhoneNumber = "+66 1 23 45 76 90"  },
-            new Contact{ FirstName = "Frodon", LastName = "Baggins", FullName = "Frodon Baggins", Address = "The Shire", Email = "frodon.baggins@shire.middleearth", MobilePhoneNumber = "+11 0 98 76 54 32"  },
+            new Contact{ FirstName = "Anthony", LastName = "Da Silva Ferreira", Address = "1 rue du Président Pompidou", PostalCode="59000", City="City", Country="France", Email = "mail", MobilePhoneNumber = "phone"  },
+            new Contact{ FirstName = "Samus", LastName = "Samus Aran", Address = "Space", PostalCode="666", City="Chozo Temple", Country="zebes", Email = "samus.aran@metroid.com", MobilePhoneNumber = "+66 1 23 45 76 90"  },
+            new Contact{ FirstName = "Frodon", LastName = "Baggins", Address = "1er terrier sur la gauche", PostalCode="123456", City="The Shire", Country="Middle Earth", Email = "frodon.baggins@shire.middleearth", MobilePhoneNumber = "+11 0 98 76 54 32"  },
             };
 
             foreach (var c in contacts)
