@@ -18,6 +18,20 @@ namespace OpenWebChallenge.API.Data
             modelBuilder.Entity<Contact>().ToTable("Contacts");
             modelBuilder.Entity<Skill>().ToTable("Skills");
             modelBuilder.Entity<ContactSkill>().ToTable("ContactSkills");
+
+            modelBuilder.Entity<ContactSkill>(entity =>
+            {
+                entity.HasOne(d => d.Contact)
+                    .WithMany(p => p.ContactSkills)
+                    .HasForeignKey(d => d.ContactId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ContactSkill_Contact");
+
+                entity.HasOne(d => d.Skill)
+                    .WithMany(p => p.ContactSkills)
+                    .HasForeignKey(d => d.SkillId)
+                    .HasConstraintName("FK_ContactSkill_Skill");
+            });
         }
     }
 }

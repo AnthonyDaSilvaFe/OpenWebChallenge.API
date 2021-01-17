@@ -1,17 +1,23 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OpenWebChallenge.API.Models
 {
     public class ContactSkill
     {
-        [Required]
+        [Key]
         public int Id { get; set; }
-        [Required]
+
         public int ContactId { get; set; }
-        [Required]
+
         public int SkillId { get; set; }
 
+        [ForeignKey(nameof(ContactId))]
+        [InverseProperty(nameof(ContactSkill.Contact.ContactSkills))]
         public Contact Contact { get; set; }
+
+        [ForeignKey(nameof(SkillId))]
+        [InverseProperty(nameof(ContactSkill.Contact.ContactSkills))]
         public Skill Skill { get; set; }
     }
 }
